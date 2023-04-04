@@ -1,69 +1,43 @@
-#include "foo.h"
+//
+// Created by Camila on 04/04/2023.
+//
 
-Matriz2D::Matriz2D(){
-    // Constructor por defecto
-}
+#include <iostream>
 
-Matriz2D::Matriz2D(int n){
-    // Constructor con un parametro
-}
+using namespace std;
 
-Matriz2D::Matriz2D(int n, int m){
-    // Constructor con dos parametros
-}
+class Matriz2D{
+    friend Matriz2D t(Matriz2D&);
+    friend ostream& operator<<(ostream&, const Matriz2D&);
+    friend Matriz2D operator+(const Matriz2D&, const Matriz2D&);
+    friend Matriz2D operator-(const Matriz2D&, const Matriz2D&);
+    friend Matriz2D operator*(const Matriz2D&, const Matriz2D&);
+    friend Matriz2D operator+(const Matriz2D&, float);
+    friend Matriz2D operator-(const Matriz2D&, float);
+    friend Matriz2D operator*(const Matriz2D&, float);
+    friend Matriz2D operator/(const Matriz2D&, float);
+public:
+    Matriz2D();
+    Matriz2D(int);
+    Matriz2D(int, int);
+    Matriz2D(const Matriz2D&);
+    Matriz2D(Matriz2D&&);
 
-Matriz2D::Matriz2D(const Matriz2D& m){
-    // Constructor de copia
-}
+    float get(int, int);
+    int getFilas();
+    int getColumnas();
+private:
+    float** ptr;
+    int filas;
+    int columnas;
+};
 
-Matriz2D::Matriz2D(Matriz2D&& m){
-    // Constructor de movimiento
-}
-
-Matriz2D t(Matriz2D& m){
-    // Transpuesta de una matriz
-}
-
-std::ostream& operator<<(std::ostream& os, const Matriz2D& m){
-    // Sobrecarga del operador <<
-}
-
-Matriz2D operator+(const Matriz2D& m1, const Matriz2D& m2){
-    // Sobrecarga del operador +
-}
-
-Matriz2D operator-(const Matriz2D& m1, const Matriz2D& m2){
-    // Sobrecarga del operador -
-}
-
-Matriz2D operator*(const Matriz2D& m1, const Matriz2D& m2){
-    // Sobrecarga del operador *
-}
-
-Matriz2D operator+(const Matriz2D& m, float n){
-    // Sobrecarga del operador +
-}
-
-Matriz2D operator-(const Matriz2D& m, float n){
-    // Sobrecarga del operador -
-}
-
-Matriz2D operator*(const Matriz2D& m, float n){
-    // Sobrecarga del operador *
-}
-
-Matriz2D operator/(const Matriz2D& m, float n){
-    // Sobrecarga del operador /
-}
-
-float Matriz2D::get(int i, int j){
-    return ptr[i][j];
-}
-
-int Matriz2D::getFilas(){
-    return filas;
-}
-
-int Matriz2D::getColumnas(){
-    return columnas;
-}
+//Matriz2D t(Matriz2D&);
+ //ostream& operator<<(ostream&, const Matriz2D&);
+ //Matriz2D operator+(const Matriz2D&, const Matriz2D&);
+//Matriz2D operator-(const Matriz2D&, const Matriz2D&);
+ //Matriz2D operator*(const Matriz2D&, const Matriz2D&);
+//Matriz2D operator+(const Matriz2D&, float);
+//Matriz2D operator-(const Matriz2D&, float);
+//Matriz2D operator*(const Matriz2D&, float);
+//Matriz2D operator/(const Matriz2D&, float);
