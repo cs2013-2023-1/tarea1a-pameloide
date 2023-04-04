@@ -1,4 +1,4 @@
-#include "foo.h"
+#include "Matriz2D.h"
 
 Matriz2D::Matriz2D(){
     // Constructor por defecto
@@ -10,7 +10,9 @@ Matriz2D::Matriz2D(){
     }
     for(int i=0 ; i < filas ; i++){
         for(int j=0 ; j < columnas ; j++){
-            ptr[i][j]=rand()%2;
+            float valor=rand()%10;
+            ptr[i][j] = valor/10;
+
         }
 
     }
@@ -26,7 +28,8 @@ Matriz2D::Matriz2D(int n){
     }
     for(int i=0 ; i < filas ; i++){
         for(int j=0 ; j < columnas ; j++){
-            ptr[i][j]=rand()%2;
+            float valor=rand()%10;
+            ptr[i][j] = valor/10;
         }
 
     }
@@ -42,7 +45,8 @@ Matriz2D::Matriz2D(int n, int m){
     }
     for(int i=0 ; i < filas ; i++){
         for(int j=0 ; j < columnas ; j++){
-            ptr[i][j]=rand()%2;
+            float valor=rand()%10;
+            ptr[i][j] = valor/10;
         }
 
     }
