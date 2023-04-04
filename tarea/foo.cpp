@@ -1,9 +1,16 @@
-#include "tarea.h"
+#include "Matriz2D.h"
+
 
 Matriz2D::Matriz2D(){
     // Constructor por defecto
     filas=3;
     columnas=3;
+    float **ptr = new  float*[filas];
+    for (int i=0;i<filas;i++){
+      ptr[i]=new float[columnas];
+    }
+    
+
     for(int i=0 ; i < filas ; i++){
       for(int j=0 ; j < columnas ; j++){
         ptr[i][j]=rand()%2;
@@ -16,6 +23,10 @@ Matriz2D::Matriz2D(int n){
     // Constructor con un parametro
     filas = n;
     columnas = n;
+    float **ptr = new  float*[filas];
+    for (int i=0;i<filas;i++){
+      ptr[i]=new float[columnas];
+    }
     for(int i=0 ; i < filas ; i++){
       for(int j=0 ; j < columnas ; j++){
         ptr[i][j]=rand()%2;
@@ -28,6 +39,10 @@ Matriz2D::Matriz2D(int n, int m){
     // Constructor con dos parametros
     filas = n;
     columnas = m;
+    float **ptr = new  float*[filas];
+    for (int i=0;i<filas;i++){
+      ptr[i]=new float[columnas];
+    }
     for(int i=0 ; i < filas ; i++){
       for(int j=0 ; j < columnas ; j++){
         ptr[i][j]=rand()%2;
@@ -40,6 +55,10 @@ Matriz2D::Matriz2D(const Matriz2D& m){
     // Constructor de copia
     filas = m.filas;
     columnas = m.columnas;
+    float **ptr = new  float*[filas];
+    for (int i=0;i<filas;i++){
+      ptr[i]=new float[columnas];
+    }
     for(int i=0 ; i < filas ; i++){
       for(int j=0 ; j < columnas ; j++){
         m.ptr[i][j] = ptr[i][j];//cada elemento de la matriz se copia
@@ -54,6 +73,10 @@ Matriz2D::Matriz2D(Matriz2D&& m){
     // Constructor de movimiento
     filas = m.filas;
     columnas = m.columnas;
+    float **ptr = new  float*[filas];
+    for (int i=0;i<filas;i++){
+      ptr[i]=new float[columnas];
+    }
     for(int i=0 ; i < filas ; i++){
       for(int j=0 ; j < columnas ; j++){
         m.ptr[i][j] = ptr[i][j];//cada elemento de la matriz se copia
@@ -68,6 +91,10 @@ Matriz2D t(Matriz2D& m){
     Matriz2D trans;
     trans.filas = m.columnas;
     trans.columnas=m.filas;
+    float **ptr = new  float*[trans.filas];
+    for (int i=0;i<trans.filas;i++){
+      ptr[i]=new float[trans.columnas];
+    }
     for(int i=0 ; i < m.filas ; i++){
       for(int j=0 ; j < m.columnas ; j++){
         trans.ptr[j][i] = m.ptr[i][j];//cada elemento de la matriz se intercambia
@@ -148,14 +175,32 @@ Matriz2D operator+(const Matriz2D& m, float n){
 
 Matriz2D operator-(const Matriz2D& m, float n){
     // Sobrecarga del operador -
+     Matriz2D mat;
+    for(int i=0 ; i < m.filas ; i++){
+      for(int j=0 ; j < m.columnas ; j++){
+        mat.ptr[i][j] = m.ptr[i][j] - n;
+      }
+    }return mat;
 }
 
 Matriz2D operator*(const Matriz2D& m, float n){
     // Sobrecarga del operador *
+     Matriz2D mat;
+    for(int i=0 ; i < m.filas ; i++){
+      for(int j=0 ; j < m.columnas ; j++){
+        mat.ptr[i][j] = m.ptr[i][j] * n;
+      }
+    }return mat;
 }
 
 Matriz2D operator/(const Matriz2D& m, float n){
     // Sobrecarga del operador /
+     Matriz2D mat;
+    for(int i=0 ; i < m.filas ; i++){
+      for(int j=0 ; j < m.columnas ; j++){
+        mat.ptr[i][j] = m.ptr[i][j] / n;
+      }
+    }return mat;
 }
 
 float Matriz2D::get(int i, int j){
