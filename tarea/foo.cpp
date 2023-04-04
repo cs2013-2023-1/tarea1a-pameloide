@@ -1,4 +1,4 @@
-#include "Matriz2D.h"
+#include "foo.h"
 
 Matriz2D::Matriz2D(){
     // Constructor por defecto
