@@ -80,14 +80,15 @@ Matriz2D::Matriz2D(Matriz2D&& m){
     }
     for(int i=0 ; i < filas ; i++){
         for(int j=0 ; j < columnas ; j++){
-            m.ptr[i][j] = ptr[i][j];//cada elemento de la matriz se copia
+            ptr[i][j]=m.ptr[i][j];//cada elemento de la matriz se copia
         }
     }
-    for(int i=0;i<filas;i++){
-        delete[] ptr[i];
+    for(int i=0 ; i<filas;i++){
+        delete [] m.ptr[i];
     }
+    delete []m.ptr;
+    m.ptr=NULL;
 
-    ptr = nullptr;
 }
 
 Matriz2D t(Matriz2D& m){
@@ -115,35 +116,35 @@ std::ostream& operator<<(std::ostream& os, const Matriz2D& m){
     os<<"Recibido"<<endl;
     for(int i=0 ; i < m.filas ; i++){
         for(int j=0 ; j < m.columnas ; j++){
-            os<<m.ptr[i][j]<<"  ";//cada elemento de la matriz se copia
+            os<<m.ptr[i][j]<<" ";//cada elemento de la matriz se copia
         }os<<endl;
     }return os;
 }
 
 Matriz2D operator+(const Matriz2D& m1, const Matriz2D& m2){
     // Sobrecarga del operador +
+    Matriz2D mat(m1.filas,m1.columnas);
     //comprobar si ambas matrices son del mismo tamaño
     if((m1.filas==m2.filas)and (m1.columnas == m2.columnas)){
-        Matriz2D mat(m1.filas,m1.columnas);
         for(int i=0 ; i < m1.filas ; i++){
             for(int j=0 ; j < m1.columnas ; j++){
                 mat.ptr[i][j] = m1.ptr[i][j] + m2.ptr[i][j];//cada elemento de las matrices se suma
             }
-        }return mat;
-    }
+        }
+    }return mat;
 }
 
 Matriz2D operator-(const Matriz2D& m1, const Matriz2D& m2){
     // Sobrecarga del operador -
+    Matriz2D mat(m1.filas,m1.columnas);
     //comprobar si ambas matrices son del mismo tamaño
     if((m1.filas==m2.filas)and (m1.columnas == m2.columnas)){
-        Matriz2D mat(m1.filas,m1.columnas);
         for(int i=0 ; i < m1.filas ; i++){
             for(int j=0 ; j < m1.columnas ; j++){
                 mat.ptr[i][j] = m1.ptr[i][j] - m2.ptr[i][j];//cada elemento de las matrices se suma
             }
-        }return mat;
-    }
+        }
+    }return mat;
 }
 
 Matriz2D operator*(const Matriz2D& m1, const Matriz2D& m2){
@@ -162,7 +163,7 @@ Matriz2D operator*(const Matriz2D& m1, const Matriz2D& m2){
         }return mat;
 
     }
-    else cout<<"Estas matrices no se pueden multiplicar";
+    else return m1;
 }
 
 Matriz2D operator+(const Matriz2D& m, float n){
